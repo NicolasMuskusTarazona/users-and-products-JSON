@@ -90,3 +90,40 @@ const saveUser = async(data) => {
     const result = await reponse.json()
     return result
 }
+
+while(confirm("¿ Deasea insertar un usuario ?")) {
+    const data = {
+        id : prompt("Ingresa el id", "6"),
+        name: prompt("Ingrese el nombre", "Nicolas"),
+        last: prompt("Ingrese el apellido", "Muskus"),
+    }
+    saveUser(data)
+    .then(result => alert(JSON.stringify(result)))
+    .catch(error => alert(error))
+}
+
+const editUser = async(data) =>{
+    const {id, ...dataUpdate} = data
+    const url = new URL("https://67e686856530dbd311105617.mockapi.io")
+    url.pathname = `/users/${id}`
+    const header = new Headers()
+    header.append("Content-Type", "application/json")
+    const config = {
+        method: "PUT", //Actualizar
+        headers: header,
+        body: JSON.stringify(dataUpdate)
+    }
+    const reponse = await fetch(url.toString(),config)
+    const result = await reponse.json()
+    return result
+}
+
+while (confirm("¿ Deseas actualizar un usuario")){
+    const data = {}
+    data.id = prompt("Ingrese el id del usuario a actualizar", "1")
+    data.name = (confirm("¿Desea actualizar el nombre del usuario ?")) ? prompt("Ingrese el nuevo nombre del usuario") : undefined
+    if(confirm("¿Desea actualizar el apellido del usuario ?")) data.last = prompt("Ingrese el nuevo apellido del usuario")
+    editUser(data)
+    .then(result => alert(JSON.stringify(result)))
+    .catch(error => alert(error))
+}
