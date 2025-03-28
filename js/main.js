@@ -127,3 +127,27 @@ while (confirm("¿ Deseas actualizar un usuario")){
     .then(result => alert(JSON.stringify(result)))
     .catch(error => alert(error))
 }
+
+const deleteUser = async(data) =>{
+    const {id, ...dataUpdate} = data
+    const url = new URL("https://67e686856530dbd311105617.mockapi.io")
+    url.pathname = `/users/${id}`
+    const header = new Headers()
+    header.append("Content-Type", "application/json")
+    const config ={
+        method: "DELETE",
+        headers: header,
+        body: JSON.stringify(dataUpdate)
+    }
+    const reponse = await fetch(url.toString(),config)
+    const result = await reponse.json()
+    return result
+}
+while (confirm("¿ Deseas eliminar un producto?")){
+    const data = {}
+    data.id = prompt("Ingrese el id del usuario a eliminar")
+    if(confirm("¿Desea eliminar el usuario?"))
+    deleteUser(data)
+    .then(result => alert(JSON.stringify(result)))
+    .catch(error => alert(error))
+}
