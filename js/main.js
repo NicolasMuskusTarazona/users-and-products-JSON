@@ -75,3 +75,18 @@ while (confirm("¿ Deseas eliminar un producto?")){
     .then(result => alert(JSON.stringify(result)))
     .catch(error => alert(error))
 }
+
+const saveUser = async(data) => {
+    const url = new URL("https://67e686856530dbd311105617.mockapi.io")
+    url.pathname = "/users"
+    const header = new Headers()
+    header.append("Content-Type", "application/json")
+    const config = {
+        method: "POST", //Guardar
+        headers: header,
+        body: JSON.stringify(data)
+    }
+    const reponse = await fetch(url.toString(),config)
+    const result = await reponse.json()
+    return result
+}
