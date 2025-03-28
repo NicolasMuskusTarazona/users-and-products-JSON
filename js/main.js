@@ -1,3 +1,24 @@
+const productsUser = 
+Number(prompt(
+"-------------------------------------------------------------------------------\n"+
+"Opciones de Producto: \n" + 
+"   1.Añadir producto.\n" +
+"   2.Editar Producto.\n" +
+"   3.Eliminar Producto.\n" +
+"-------------------------------------------------------------------------------\n"+
+"Opciones de Usuario: \n"+
+"4. Añadir Usuario.\n" +
+"5. Editar Usuario.\n" +
+"6. Eliminar Usuario."))
+
+switch (productsUser) {
+    case value:
+        
+        break;
+
+    default:
+        break;
+}
 const saveProduct = async(data) => {
     const url = new URL("https://67e686856530dbd311105617.mockapi.io")
     url.pathname = "/products"
